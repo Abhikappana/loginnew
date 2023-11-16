@@ -26,13 +26,10 @@
                                     
                                     <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="password" required>
                                 </div>
+                                <p style="color: red;">{{message}}</p>
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
                                 <br><br>
-                                <p style="color: red;">
-                                    {{#if error}}
-                                    {{value}}
-                                    {{/if}}
-                                </p>
+                                
 
                             </form>
                         </div>
