@@ -3,6 +3,8 @@ const app = express()
 const path = require('path')
 const nocache = require('nocache')
 
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: true }))
@@ -62,13 +64,11 @@ function checkSignIn(req, res, next) {
 
 app.get('/', (req, res) => {
     if (req.session.isAuth) {
-
         res.redirect('/home')
     }
     else {
         res.render('login')
-    }
-    // res.render('login')
+    }  
 });
 
 credential = {
@@ -77,19 +77,19 @@ credential = {
 }
 var uName;
 
-app.post('/login', (req, res) => {
+app.post('/login', (req, res, next) => {
     console.log("1")
-    if (req.body.username == credential.username && req.body.password ==credential.password) {
-        // console.log("2")
+    if (req.body.username == credential.username && req.body.password == credential.password) {
+        console.log("2")
   uName = req.body.username;
         req.session.isAuth = true;
-        //res.render('home',{uName,phone})
         res.redirect('/home')
     }
-    else {
+    else { 
         console.log("3")
         const message = 'Invalid Username and Password';
-        res.render('login', { message, redirect: true });
+        res.render('login', { message, redirect: true });  
+        
     }
 });
 
@@ -98,5 +98,6 @@ app.get('/home', checkSignIn, (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.log("listening on server!!")
-})
+    console.log("listening on server!")
+}) 
+console.log("http://localhost:3000") 
