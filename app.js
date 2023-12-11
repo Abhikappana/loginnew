@@ -81,7 +81,6 @@ app.post('/login', (req, res, next) => {
     console.log("1")
     if (req.body.username == credential.username && req.body.password == credential.password) {
         console.log("2")
-  uName = req.body.username;
         req.session.isAuth = true;
         res.redirect('/home')
     }
